@@ -49,7 +49,7 @@ namespace Vandelay.Fody
       return TargetName(targetName, counter + 1);
     }
 
-    ImportFields InjectImportsField(TypeReference importType)
+    ImportsField InjectImportsField(TypeReference importType)
     {
       // [ImportMany(typeof(ImportType))]
       // private ImportType[] _imports;
@@ -66,13 +66,13 @@ namespace Vandelay.Fody
 
       fieldDefinition.CustomAttributes.Add(importAttribute);
 
-      return new ImportFields(
+      return new ImportsField(
         fieldDefinition, importerCollectionType);
     }
 
-    class ImportFields
+    class ImportsField
     {
-      public ImportFields(FieldDefinition definition, ArrayType collectionType)
+      public ImportsField(FieldDefinition definition, ArrayType collectionType)
       {
         Definition = definition;
         CollectionType = collectionType;
